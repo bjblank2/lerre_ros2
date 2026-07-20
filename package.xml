@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>lerre_ros2</name>
+  <version>0.0.0</version>
+  <description>LeRRe tracked mobile manipulator ROS2 package (SO101 follower arm + tank/tread drive base)</description>
+  <maintainer email="brianjblank7@gmail.com">ros</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Shared SO101 arm URDF -->
+  <exec_depend>so101_ros2</exec_depend>
+
+  <!-- lerre_ros2.launch.py's calibration_params default still points at
+       lekiwi_ros2's lekiwi_so101_calibration.yaml (pre-existing behavior,
+       carried over as-is from before this package was split out). LeRRe
+       should get its own calibration file; tracked as a follow-up. -->
+  <exec_depend>lekiwi_ros2</exec_depend>
+
+  <!-- Feetech bus driver + calibration -->
+  <exec_depend>feetech_python_driver</exec_depend>
+
+  <!-- ros2_control -->
+  <exec_depend>feetech_ros2_driver</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>ros2_controllers</exec_depend>
+  <exec_depend>forward_command_controller</exec_depend>
+  <exec_depend>velocity_controllers</exec_depend>
+  <exec_depend>joint_state_broadcaster</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>joy</exec_depend>
+
+  <test_depend>ament_copyright</test_depend>
+  <test_depend>ament_flake8</test_depend>
+  <test_depend>ament_pep257</test_depend>
+  <test_depend>python3-pytest</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>
