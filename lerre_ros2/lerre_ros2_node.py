@@ -47,7 +47,7 @@ class Ros2LeRReNode(Node):
             'baudrate': 1_000_000,
             'arm_id': 'follower_arm',
             'leader_arm_id': 'leader_arm',
-            'max_relative_target': 0.0,
+            'max_relative_target': 20.0,
             'use_degrees': True,
             'arm_calibration_file': '',
             'max_linear_speed': 1.0,

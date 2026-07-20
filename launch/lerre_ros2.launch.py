@@ -38,9 +38,9 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'calibration_params',
             default_value=PathJoinSubstitution([
-                FindPackageShare('lekiwi_ros2'),
+                FindPackageShare('lerre_ros2'),
                 'params',
-                'lekiwi_so101_calibration.yaml',
+                'lerre_so101_calibration.yaml',
             ]),
             description='ROS 2 parameter file that defines follower arm calibration data'
         ),

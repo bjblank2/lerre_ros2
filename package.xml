@@ -10,12 +10,6 @@
   <!-- Shared SO101 arm URDF -->
   <exec_depend>so101_ros2</exec_depend>
 
-  <!-- lerre_ros2.launch.py's calibration_params default still points at
-       lekiwi_ros2's lekiwi_so101_calibration.yaml (pre-existing behavior,
-       carried over as-is from before this package was split out). LeRRe
-       should get its own calibration file; tracked as a follow-up. -->
-  <exec_depend>lekiwi_ros2</exec_depend>
-
   <!-- Feetech bus driver + calibration -->
   <exec_depend>feetech_python_driver</exec_depend>
 

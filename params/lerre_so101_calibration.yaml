@@ -1,0 +1,42 @@
+# PLACEHOLDER calibration, copied from lekiwi_ros2's arm calibration as a starting point.
+# LeRRe has its own physical SO101 arm — run `ros2 run lerre_ros2 so101_calibration_node`
+# and replace these values with the real calibration for this unit before relying on them.
+lerre_ros2_node:
+  ros__parameters:
+    calibration:
+      elbow_flex:
+        drive_mode: 0
+        homing_offset: -334
+        id: 3
+        range_max: 3020
+        range_min: 824
+      gripper:
+        drive_mode: 0
+        homing_offset: -1430
+        id: 6
+        range_max: 3497
+        range_min: 2029
+      shoulder_lift:
+        drive_mode: 0
+        homing_offset: 1092
+        id: 2
+        range_max: 3172
+        range_min: 886
+      shoulder_pan:
+        drive_mode: 0
+        homing_offset: 122
+        id: 1
+        range_max: 3454
+        range_min: 652
+      wrist_flex:
+        drive_mode: 0
+        homing_offset: 811
+        id: 4
+        range_max: 3316
+        range_min: 867
+      wrist_roll:
+        drive_mode: 0
+        homing_offset: -1752
+        id: 5
+        range_max: 3069
+        range_min: 993
