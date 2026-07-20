@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="lerre">
+
+  <!-- Include SO-101 arm description -->
+  <xacro:include filename="$(find so101_ros2)/urdf/so101.urdf"/>
+
+  <!-- Track links (geometry is approximate; used for ros2_control registration) -->
+  <link name="left_track_link"/>
+  <link name="right_track_link"/>
+
+  <joint name="left_track" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_track_link"/>
+    <origin xyz="0.0 0.1 0.0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <joint name="right_track" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_track_link"/>
+    <origin xyz="0.0 -0.1 0.0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- ros2_control hardware interface — all 8 motors on one serial bus -->
+  <ros2_control name="lerre_hardware" type="system">
+    <hardware>
+      <plugin>feetech_ros2_driver/FeetechHardwareInterface</plugin>
+      <param name="usb_port">/dev/ttyACM0</param>
+    </hardware>
+
+    <!-- ARM JOINTS — Position mode -->
+    <!-- Calibration values from lekiwi_so101_calibration.yaml -->
+    <joint name="shoulder_pan">
+      <param name="id">1</param>
+      <param name="homing_offset">122</param>
+      <param name="range_min">652</param>
+      <param name="range_max">3454</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="shoulder_lift">
+      <param name="id">2</param>
+      <param name="homing_offset">1092</param>
+      <param name="range_min">886</param>
+      <param name="range_max">3172</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="elbow_flex">
+      <param name="id">3</param>
+      <param name="homing_offset">-334</param>
+      <param name="range_min">824</param>
+      <param name="range_max">3020</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="wrist_flex">
+      <param name="id">4</param>
+      <param name="homing_offset">811</param>
+      <param name="range_min">867</param>
+      <param name="range_max">3316</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="wrist_roll">
+      <param name="id">5</param>
+      <param name="homing_offset">-1752</param>
+      <param name="range_min">993</param>
+      <param name="range_max">3069</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="gripper">
+      <param name="id">6</param>
+      <param name="homing_offset">-1430</param>
+      <param name="range_min">2029</param>
+      <param name="range_max">3497</param>
+      <command_interface name="position"/>
+      <state_interface name="position"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <!-- TRACK JOINTS — Velocity mode (tank/differential drive) -->
+    <!-- left_track motor is physically reversed; kinematics node negates its command -->
+    <joint name="left_track">
+      <param name="id">7</param>
+      <param name="operating_mode">1</param>
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+    <joint name="right_track">
+      <param name="id">8</param>
+      <param name="operating_mode">1</param>
+      <command_interface name="velocity"/>
+      <state_interface name="velocity"/>
+    </joint>
+
+  </ros2_control>
+
+</robot>

@@ -1,0 +1,29 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 50  # Hz
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    arm_controller:
+      type: forward_command_controller/ForwardCommandController
+
+    track_velocity_controller:
+      type: velocity_controllers/JointGroupVelocityController
+
+arm_controller:
+  ros__parameters:
+    joints:
+      - shoulder_pan
+      - shoulder_lift
+      - elbow_flex
+      - wrist_flex
+      - wrist_roll
+      - gripper
+    interface_name: position
+
+track_velocity_controller:
+  ros__parameters:
+    joints:
+      - left_track
+      - right_track
