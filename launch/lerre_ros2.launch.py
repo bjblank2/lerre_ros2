@@ -118,7 +118,7 @@ def generate_launch_description():
             ],
             remappings=[
                 ('/joy', '/spacemouse/joy'),
-                ('/cmd_vel', '/spacemouse/cmd_vel'),
+                ('/cmd_vel', '/spacemouse/twist'),
             ],
             output='screen'
         ),
